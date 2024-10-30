@@ -1,8 +1,20 @@
 stages:
   data_ingestion:
-    cmd: python ./src/data/data_ingestion.py ./data/raw
+    cmd: python ./src/data/data_ingestion.py /data/raw
     deps:
       - ./src/data/data_ingestion.py
     outs: 
-      - ./data/raw/rawdata.csv
+      - data/raw/rawdata.csv
+
+  make_dataset:
+    cmd: python ./src/data/make_dataset.py /data
+    deps:
+      - ./src/data/data_ingestion.py
+    params:
+    - data_transformation.split_dataset_size
+    - data_transformation.seed
+    outs:
+    - data/interim/preprocess_traindata.csv
+    - data/interim/preprocess_testdata.csv
+    
       
