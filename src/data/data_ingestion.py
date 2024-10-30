@@ -39,7 +39,7 @@ def dataingestion_FromSql():
             logging.info("Data fetched successfully from the database & shape is: %s", data.shape)
             data.columns = ['clean_comment', 'category'] 
 
-            print(data.head(5))
+            # print(data.head(5))
             return data
         except Exception as e:
             logging.error("Error fetching data from database: %s", e)

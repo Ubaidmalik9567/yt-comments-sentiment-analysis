@@ -23,7 +23,6 @@ def preprocessing(raw_dataset_path: str, split_size: float, seed: float):
         df.drop(index=0, inplace=True)  # Dropping the first row
         df.reset_index(drop=True, inplace=True)  # Resetting index
 
-
         logging.info("Loaded raw dataset successfully.")
     except Exception as e:
         logging.error(f"Failed to load raw dataset: {e}")
