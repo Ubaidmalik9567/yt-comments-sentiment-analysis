@@ -4,17 +4,51 @@ stages:
     deps:
       - ./src/data/data_ingestion.py
     outs: 
-      - data/raw/rawdata.csv
+      - ./data/raw/rawdata.csv
 
   make_dataset:
     cmd: python ./src/data/make_dataset.py /data
     deps:
+      - ./src/data/make_dataset.py
       - ./src/data/data_ingestion.py
     params:
-    - data_transformation.split_dataset_size
-    - data_transformation.seed
+      - data_transformation.split_dataset_size
+      - data_transformation.seed
     outs:
-    - data/interim/preprocess_traindata.csv
-    - data/interim/preprocess_testdata.csv
-    
-      
+      - ./data/interim/preprocess_traindata.csv
+      - ./data/interim/preprocess_testdata.csv
+
+  build_features:
+    cmd: python ./src/features/build_features.py /data
+    deps:
+      - ./src/features/build_features.py
+      - ./src/data/make_dataset.py
+    params:
+      - build_features.ngram_range
+      - build_features.max_features
+    outs:
+      - ./data/external/processed_traindata.csv
+      - ./data/external/processed_testdata.csv
+      - ./models/vectorizer.pkl
+
+  train_model:
+    cmd: python ./src/models/train_model.py /data/external
+    deps:
+      - ./src/models/train_model.py 
+      - ./data/external/processed_traindata.csv
+    params:
+      - train_model.learning_rate
+      - train_model.max_depth
+      - train_model.n_estimators
+    outs:
+      - ./models/model.pkl
+
+  predict_model:
+    cmd: python ./src/models/predict_model.py /data/external
+    deps:
+      - ./src/models/predict_model.py
+      - ./data/external/processed_testdata.csv
+      - ./models/model.pkl
+    outs:
+      - ./reports/metrics.json
+      - ./reports/model_experiment_info.json  # Add the model_experiment_info.json file as an output
