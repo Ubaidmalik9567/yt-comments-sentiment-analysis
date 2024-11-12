@@ -52,3 +52,15 @@ stages:
     outs:
       - ./reports/metrics.json
       - ./reports/model_experiment_info.json  # Add the model_experiment_info.json file as an output
+  
+  register_model:
+    cmd: python ./src/models/register_model.py
+    deps:
+    - ./reports/model_experiment_info.json
+    - ./src/models/register_model.py
+  
+  promote_model:
+    cmd: python ./src/models/promote_model.py
+    deps:
+      - ./src/models/promote_model.py
+      - ./reports/model_experiment_info.json

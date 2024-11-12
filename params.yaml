@@ -1,12 +1,12 @@
 data_transformation:
-  split_dataset_size: 0.33
+  split_dataset_size: 0.36
   seed: 45
 
 build_features:
   ngram_range: [1, 3]  
-  max_features: 10000
+  max_features: 11000
 
 train_model:
   learning_rate: 0.08
-  max_depth: 20
+  max_depth: 22
   n_estimators: 367

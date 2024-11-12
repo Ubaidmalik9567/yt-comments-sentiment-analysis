@@ -10,6 +10,7 @@ import yaml
 import mlflow
 import matplotlib.pyplot as plt
 import seaborn as sns
+import dagshub
 
 
 # Set up logging
@@ -92,7 +93,11 @@ def random_sample_csv(csv_path, num_samples):
 def main():
     
     # Set up MLflow tracking URI
-    mlflow.set_tracking_uri("http://ec2-16-171-19-90.eu-north-1.compute.amazonaws.com:5000/")
+    # mlflow.set_tracking_uri("http://ec2-16-171-19-90.eu-north-1.compute.amazonaws.com:5000/")
+    
+    dagshub.init(repo_owner='Ubaidmalik9567', repo_name='yt-comments-sentiment-analysis', mlflow=True)
+    mlflow.set_tracking_uri("https://dagshub.com/Ubaidmalik9567/yt-comments-sentiment-analysis.mlflow")
+
 
     mlflow.set_experiment("dvc-pipeline-info")  # Set up MLflow experiment
     with mlflow.start_run(run_name="pred2prod_files-run") as run:  # Start MLflow run
