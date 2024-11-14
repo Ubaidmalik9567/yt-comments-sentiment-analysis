@@ -1,10 +1,10 @@
 stages:
-#   data_ingestion:
-#     cmd: python ./src/data/data_ingestion.py /data/raw
-#     deps:
-#       - ./src/data/data_ingestion.py
-#     outs: 
-#       - ./data/raw/rawdata.csv
+  data_ingestion:
+    cmd: python ./src/data/data_ingestion.py /data/raw
+    deps:
+      - ./src/data/data_ingestion.py
+    outs: 
+      - ./data/raw/rawdata.csv
 
   make_dataset:
     cmd: python ./src/data/make_dataset.py /data
