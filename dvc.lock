@@ -26,16 +26,16 @@ stages:
     params:
       params.yaml:
         data_transformation.seed: 45
-        data_transformation.split_dataset_size: 0.36
+        data_transformation.split_dataset_size: 0.35
     outs:
     - path: ./data/interim/preprocess_testdata.csv
       hash: md5
-      md5: f230244cae4fd8946964b36f1a29aad9
-      size: 1855080
+      md5: 12c78df7dd4eeb8f1c01e3e59715a9e6
+      size: 1799791
     - path: ./data/interim/preprocess_traindata.csv
       hash: md5
-      md5: 6dfde72df757cc0bc23948aa03d3a4e5
-      size: 3242975
+      md5: a3ff917c2f8b2acdff41f3566da5cae7
+      size: 3298264
   build_features:
     cmd: python ./src/features/build_features.py /data
     deps:
@@ -49,30 +49,30 @@ stages:
       size: 3642
     params:
       params.yaml:
-        build_features.max_features: 11000
+        build_features.max_features: 12000
         build_features.ngram_range:
         - 1
         - 3
     outs:
     - path: ./data/external/processed_testdata.csv
       hash: md5
-      md5: 7c5744f074a521ef75312156ffd1f68d
-      size: 586265235
+      md5: 46b05c715f8a2cec517f19fd1a84ae02
+      size: 621534626
     - path: ./data/external/processed_traindata.csv
       hash: md5
-      md5: a57f4d3c73780cabcb166faef4d77d79
-      size: 1042241890
+      md5: ffe870360206903aeb5e56e17751179a
+      size: 1154302567
     - path: ./models/vectorizer.pkl
       hash: md5
-      md5: 89982df0b502ad92fd9740e8f7e9ed50
-      size: 423604
+      md5: 40133f9bff9bb74928fa89cfd9045574
+      size: 463098
   train_model:
     cmd: python ./src/models/train_model.py /data/external
     deps:
     - path: ./data/external/processed_traindata.csv
       hash: md5
-      md5: a57f4d3c73780cabcb166faef4d77d79
-      size: 1042241890
+      md5: ffe870360206903aeb5e56e17751179a
+      size: 1154302567
     - path: ./src/models/train_model.py
       hash: md5
       md5: 24c7297d72e6f1e087d596ee216b2184
@@ -80,13 +80,13 @@ stages:
     params:
       params.yaml:
         train_model.learning_rate: 0.08
-        train_model.max_depth: 22
+        train_model.max_depth: 23
         train_model.n_estimators: 367
     outs:
     - path: ./models/model.pkl
       hash: md5
-      md5: ebc5f55e0d416d23231870f0b8438229
-      size: 4065600
+      md5: 2383a999916e296a7d4c86baa71d8581
+      size: 4101513
   predict_model:
     cmd: python ./src/models/predict_model.py /data/external
     deps:

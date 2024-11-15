@@ -11,3 +11,4 @@ python-dotenv
 pymysql
 seaborn
 lightgbm
+dvc[s3]
