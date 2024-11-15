@@ -12,3 +12,4 @@ pymysql
 seaborn
 lightgbm
 dvc[s3]
+logger
