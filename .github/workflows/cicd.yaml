@@ -17,39 +17,39 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Cache pip dependencies 
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
+      # - name: Cache pip dependencies 
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: ~/.cache/pip
+      #     key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-pip-
 
-      - name: Install necessary project development dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+      # - name: Install necessary project development dependencies
+      #   run: |
+      #     python -m pip install --upgrade pip
+      #     pip install -r requirements.txt
       
-      - name: Download NLTK data
-        run: |
-          python -m nltk.downloader wordnet
+      # - name: Download NLTK data
+      #   run: |
+      #     python -m nltk.downloader wordnet
 
-      - name: Run DVC pipeline
-        env:
-          # AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }} 
-          # AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          # AWS_DEFAULT_REGION: us-east-1  # Replace with your AWS region
-          DAGSHUB_PAT: ${{ secrets.DAGSHUB_PAT }}
-        run: |
-          dvc repro
+      # - name: Run DVC pipeline
+      #   env:
+      #     # AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }} 
+      #     # AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     # AWS_DEFAULT_REGION: us-east-1  # Replace with your AWS region
+      #     DAGSHUB_PAT: ${{ secrets.DAGSHUB_PAT }}
+      #   run: |
+      #     dvc repro
     
-      - name: Push DVC-tracked data to remote
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: eu-north-1  # Replace with your AWS region
-        run: |
-          dvc push
+      # - name: Push DVC-tracked data to remote
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     AWS_DEFAULT_REGION: eu-north-1  # Replace with your AWS region
+      #   run: |
+      #     dvc push
 
       - name: Configure Git
         run: |
@@ -77,5 +77,7 @@ jobs:
 
 
 
-      # DAGSHUB_PAT = 712ff8ea1bfb1ef44f6749aca276482f1cdc2d62
+      # DAGSHUB_PAT = d99c9da88fe635eb0297d593a60bc91b40b73dec
+
+
 
