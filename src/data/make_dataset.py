@@ -88,7 +88,7 @@ def main():
 
         path = sys.argv[1]
         predata_save_path = home_dir.as_posix() + path + "/interim"
-        raw_dataset_path = home_dir.as_posix() + path + "/raw/rawdata.csv"
+        raw_dataset_path = "https://raw.githubusercontent.com/Himanshu-1703/reddit-sentiment-analysis/refs/heads/main/data/reddit.csv" # home_dir.as_posix() + path + "/raw/rawdata.csv"
         
         params_location = home_dir.as_posix() + '/params.yaml'
         parameters = yaml.safe_load(open(params_location))["data_transformation"]
