@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import dagshub
 import os
+from mlflow.models import infer_signature
 
 
 # Set up logging
@@ -85,12 +86,6 @@ def save_model_info(run_id, model_path, file_path) -> None: # that info use for 
     with open(file_path, 'w') as file:
         json.dump(model_info, file, indent=4)
 
-def random_sample_csv(csv_path, num_samples):
-    df = pd.read_csv(csv_path)
-    # Perform random sampling
-    sampled_df = df.sample(n=num_samples, random_state=1)
-    return sampled_df
-
 def main():
 
     dagshub_token = os.getenv("DAGSHUB_PAT")
@@ -118,13 +113,6 @@ def main():
             save_metrics_location = home_dir.as_posix() + "/reports"
             processed_datasets_path = home_dir.as_posix() + path + "/processed_testdata.csv"
             trained_model_path = home_dir.as_posix() + "/models/model.pkl"
-            # forsample_csv_path = processed_datasets_path
-
-            # # Perform random sampling
-            # # sampled_data = random_sample_csv(forsample_csv_path, num_samples=200)
-            # sampled_data_path = home_dir.as_posix() + "/reports/sampled_data.csv"
-            # # sampled_data.to_csv(sampled_data_path, index=False)
-            # mlflow.log_artifact(sampled_data_path)
 
             x, y = load_and_split_data(processed_datasets_path)
             model = load_save_model(trained_model_path)
@@ -146,7 +134,22 @@ def main():
                 for param_name, param_value in model_params.items():
                     mlflow.log_param(param_name, param_value)
             
-            mlflow.sklearn.log_model(model, "model")
+            with open('models/vectorizer.pkl', 'rb') as vectorizer_file:
+                vectorizer = pickle.load(vectorizer_file)
+                
+            # Create a DataFrame for signature inference (using first few rows as an example)
+            input_example = pd.DataFrame(x.toarray()[:5], columns=vectorizer.get_feature_names_out())  # <--- Added for signature
+
+            # Infer the signature
+            signature = infer_signature(input_example, model.predict(x[:5]))  # <--- Added for signature
+
+            # Log model with signature
+            mlflow.sklearn.log_model(
+                model,
+                "lgbm_model",
+                signature=signature,  # <--- Added for signature
+                input_example=input_example  # <--- Added input example
+            )
             mlflow.log_artifact("models/vectorizer.pkl")
 
             save_model_info(run.info.run_id, "models", 'reports/model_experiment_info.json')  # Save model info
