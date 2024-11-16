@@ -66,7 +66,7 @@ def load_model_from_artifacts(download_path):
         return None
 
 @pytest.mark.parametrize("model_name, stage", [
-    ("save_model", "staging"),
+    ("model", "staging"),
 ])
 def test_model_loading_process(model_name, stage):
     try:
