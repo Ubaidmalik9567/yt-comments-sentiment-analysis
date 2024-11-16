@@ -18,13 +18,27 @@ from mlflow.tracking import MlflowClient
 import logging
 import dagshub
 import matplotlib.dates as mdates
+import os
 
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
-dagshub.init(repo_owner='Ubaidmalik9567', repo_name='yt-comments-sentiment-analysis', mlflow=True)
-mlflow.set_tracking_uri("https://dagshub.com/Ubaidmalik9567/yt-comments-sentiment-analysis.mlflow")
+dagshub_token = os.getenv("DAGSHUB_PAT")
+
+if not dagshub_token:
+    raise EnvironmentError("DAGSHUB_PAT environment variable is not set")
+
+os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
+os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
+
+dagshub_url = "https://dagshub.com"
+repo_owner = "Ubaidmalik9567"
+repo_name = "yt-comments-sentiment-analysis"
+
+# Set up MLflow tracking URI
+mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
+
 
 # Define a default route for the root URL
 @app.route('/')
