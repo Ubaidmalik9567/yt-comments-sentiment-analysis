@@ -12,7 +12,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import dagshub
 import os
-from mlflow.models import infer_signature
 
 
 # Set up logging
@@ -134,22 +133,7 @@ def main():
                 for param_name, param_value in model_params.items():
                     mlflow.log_param(param_name, param_value)
             
-            with open('models/vectorizer.pkl', 'rb') as vectorizer_file:
-                vectorizer = pickle.load(vectorizer_file)
-                
-            # Create a DataFrame for signature inference (using first few rows as an example)
-            input_example = pd.DataFrame(x.toarray()[:5], columns=vectorizer.get_feature_names_out())  # <--- Added for signature
-
-            # Infer the signature
-            signature = infer_signature(input_example, model.predict(x[:5]))  # <--- Added for signature
-
-            # Log model with signature
-            mlflow.sklearn.log_model(
-                model,
-                "lgbm_model",
-                signature=signature,  # <--- Added for signature
-                input_example=input_example  # <--- Added input example
-            )
+            mlflow.sklearn.log_model(model, "model")
             mlflow.log_artifact("models/vectorizer.pkl")
 
             save_model_info(run.info.run_id, "models", 'reports/model_experiment_info.json')  # Save model info
