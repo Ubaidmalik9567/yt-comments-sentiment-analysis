@@ -1,12 +1,8 @@
 import os
-import logging
 import mlflow
 import pytest
 from mlflow.tracking import MlflowClient
 import dagshub
-
-# Configure logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Set your remote tracking URI
 @pytest.fixture(scope="module")
@@ -35,10 +31,10 @@ def setup_environment():
     if not run_id:
         pytest.fail(f"No model found in the '{stage}' stage.")
 
-    # Log details about the model
-    logging.info(f"Model Name: {model_name}")
-    logging.info(f"Stage: {stage}")
-    logging.info(f"Run ID: {run_id}")
+    # Print details about the model
+    print(f"Model Name: {model_name}")
+    print(f"Stage: {stage}")
+    print(f"Run ID: {run_id}")
 
     return run_id, stage
 
@@ -56,7 +52,7 @@ def get_latest_model_version(model_name, stage="Production"):
 def test_load_latest_staging_model(setup_environment):
     run_id, stage = setup_environment
     assert run_id, "Run ID should not be None"
-    logging.info(f"Successfully fetched model with Run ID: {run_id} in stage: {stage}")
+    print(f"Successfully fetched model with Run ID: {run_id} in stage: {stage}")
 
     client = MlflowClient()
 
@@ -67,7 +63,7 @@ def test_load_latest_staging_model(setup_environment):
 
         # Ensure the model loads successfully
         assert model is not None, "Model failed to load"
-        logging.info(f"Model '{model_uri}' loaded successfully from '{stage}' stage.")
+        print(f"Model '{model_uri}' loaded successfully from '{stage}' stage.")
 
     except Exception as e:
         pytest.fail(f"Model loading failed with error: {e}")
