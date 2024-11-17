@@ -8,6 +8,7 @@ import dagshub
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+# Set your remote tracking URI
 @pytest.fixture(scope="module")
 def setup_environment():
     # Initialize Dagshub
@@ -27,7 +28,7 @@ def setup_environment():
     mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
 
     model_name = "save_model"
-    stage = "staging"  # Change stage if needed
+    stage = "Production"  # Change stage if needed
 
     # Get the latest model version from the specified stage
     run_id = get_latest_model_version(model_name, stage)
@@ -42,7 +43,7 @@ def setup_environment():
     return run_id, stage
 
 
-def get_latest_model_version(model_name, stage="staging"):
+def get_latest_model_version(model_name, stage="Production"):
     client = MlflowClient()
     model_versions = client.search_model_versions(f"name='{model_name}'")
     latest_version_info = next(
