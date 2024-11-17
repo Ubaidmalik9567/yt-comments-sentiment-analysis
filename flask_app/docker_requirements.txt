@@ -1,0 +1,10 @@
+dagshub==0.3.36
+Flask==3.1.0
+Flask_Cors==5.0.0
+matplotlib==3.9.2
+mlflow==2.16.2
+mlflow_skinny==2.16.2
+nltk==3.9.1
+pandas==2.2.3
+wordcloud==1.9.4
+lightgbm
