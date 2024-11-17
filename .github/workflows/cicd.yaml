@@ -77,7 +77,7 @@ jobs:
         env:
           DAGSHUB_PAT: ${{ secrets.DAGSHUB_PAT }}
         run: |
-          pytest testing.py
+          pytest scripts/model_load_testing.py
 
 
 
