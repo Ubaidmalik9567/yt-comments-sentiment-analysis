@@ -5,7 +5,7 @@ from mlflow.tracking import MlflowClient
 import dagshub
 
 @pytest.mark.parametrize("model_name, stage", [
-    ("yt_chrome_plugin_model", "staging"),])
+    ("save_model", "staging"),])
 def test_load_latest_staging_model(model_name, stage):
     client = MlflowClient()
     
