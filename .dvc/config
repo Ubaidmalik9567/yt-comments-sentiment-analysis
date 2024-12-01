@@ -1,0 +1,4 @@
+[core]
+    remote = ubaid
+['remote "ubaid"']
+    url = s3://dvc-yt-comment-analyzer-bucket
