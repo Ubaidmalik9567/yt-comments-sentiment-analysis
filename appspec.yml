@@ -13,5 +13,3 @@ hooks: # Hooks define lifecycle events where scripts can be executed during the 
     - location: deploy/scripts/start_docker.sh
       timeout: 300
       runas: ubuntu
-
-
