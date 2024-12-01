@@ -1,0 +1,18 @@
+version: 0.0
+os: linux
+files:
+  - source: / # that line tell at this point file have at github
+    destination: /home/ubuntu/app # during to depployment exicution and then get or copy file on github and run on ec2 in give path like  in ubuntu /home/ubuntu/app
+hooks: # Hooks define lifecycle events where scripts can be executed during the deployment process.
+
+  BeforeInstall:
+    - location: deploy/scripts/install_dependencies.sh
+      timeout: 300
+      runas: ubuntu
+  ApplicationStart:
+    - location: deploy/scripts/start_docker.sh
+      timeout: 300
+      runas: ubuntu
+
+
+# github CodeDeploymentTokernASG: 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
