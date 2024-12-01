@@ -69,37 +69,37 @@ jobs:
       #   run: |
       #     git push origin ${{ github.ref_name }}
       
-      - name: Login to AWS ECR
-        if: success()
-        run: |
-          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 730335254649.dkr.ecr.eu-north-1.amazonaws.com
+      # - name: Login to AWS ECR
+      #   if: success()
+      #   run: |
+      #     aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 730335254649.dkr.ecr.eu-north-1.amazonaws.com
 
-      - name: Build Docker image
-        if: success()
-        run: |
-          docker build -t yt-comments-sentiment-analysis .
+      # - name: Build Docker image
+      #   if: success()
+      #   run: |
+      #     docker build -t yt-comments-sentiment-analysis .
 
-      - name: Tag Docker image
-        if: success()
-        run: |
-          docker tag yt-comments-sentiment-analysis:latest 730335254649.dkr.ecr.eu-north-1.amazonaws.com/yt-comments-sentiment-analysis:latest
+      # - name: Tag Docker image
+      #   if: success()
+      #   run: |
+      #     docker tag yt-comments-sentiment-analysis:latest 730335254649.dkr.ecr.eu-north-1.amazonaws.com/yt-comments-sentiment-analysis:latest
 
-      - name: Push Docker image to AWS ECR
-        if: success()
-        run: |
-          docker push 730335254649.dkr.ecr.eu-north-1.amazonaws.com/yt-comments-sentiment-analysis:latest
+      # - name: Push Docker image to AWS ECR
+      #   if: success()
+      #   run: |
+      #     docker push 730335254649.dkr.ecr.eu-north-1.amazonaws.com/yt-comments-sentiment-analysis:latest
 
-      - name: Zip files for deployment
-        if: success()
-        run: |
-          zip -r deployment.zip appspec.yml deploy/scripts/install_dependencies.sh deploy/scripts/start_docker.sh
+      # - name: Zip files for deployment
+      #   if: success()
+      #   run: |
+      #     zip -r deployment.zip appspec.yml deploy/scripts/install_dependencies.sh deploy/scripts/start_docker.sh
 
-      - name: Upload ZIP to S3
-        if: success()
-        run: |
-          aws s3 cp deployment.zip s3://yt-chrome-plugin/deployment.zip
+      # - name: Upload ZIP to S3
+      #   if: success()
+      #   run: |
+      #     aws s3 cp deployment.zip s3://yt-chrome-plugin/deployment.zip
 
       # Deploy to AWS CodeDeploy using the uploaded ZIP file
       - name: Deploy to AWS CodeDeploy
@@ -110,7 +110,7 @@ jobs:
           aws deploy create-deployment \
             --application-name YTChromePlugin \
             --deployment-config-name CodeDeployDefault.OneAtATime \
-            --deployment-group-name YTChromePluginDeploymentGroup \
+            --deployment-group-name YTChromePluginDeployGroup \
             --s3-location bucket=yt-chrome-plugin,key=deployment.zip,bundleType=zip \
             --file-exists-behavior OVERWRITE \
             --region eu-north-1
