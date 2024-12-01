@@ -15,4 +15,3 @@ hooks: # Hooks define lifecycle events where scripts can be executed during the 
       runas: ubuntu
 
 
-# github CodeDeploymentTokernASG: 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
