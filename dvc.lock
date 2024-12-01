@@ -56,23 +56,23 @@ stages:
     outs:
     - path: ./data/external/processed_testdata.csv
       hash: md5
-      md5: 22b52d319f7d597bb0bb7048c5668703
-      size: 851385545
+      md5: 48e9f1a31212ca422f28d91054742b5f
+      size: 851384627
     - path: ./data/external/processed_traindata.csv
       hash: md5
-      md5: 8fa9310a16b61ff493dbcc0f271ad213
-      size: 1513577437
+      md5: 1273b483b5d0de81c7281026b2dbbc3c
+      size: 1513576608
     - path: ./models/vectorizer.pkl
       hash: md5
-      md5: dfc25d43614c5501c27107cfc3ee5e87
-      size: 623524
+      md5: 0b6b3d4cec07856dac732ee9991c248c
+      size: 623385
   train_model:
     cmd: python ./src/models/train_model.py /data/external
     deps:
     - path: ./data/external/processed_traindata.csv
       hash: md5
-      md5: 8fa9310a16b61ff493dbcc0f271ad213
-      size: 1513577437
+      md5: 1273b483b5d0de81c7281026b2dbbc3c
+      size: 1513576608
     - path: ./src/models/train_model.py
       hash: md5
       md5: 24c7297d72e6f1e087d596ee216b2184
@@ -85,8 +85,8 @@ stages:
     outs:
     - path: ./models/model.pkl
       hash: md5
-      md5: fdcfd0db85aebf4b080ef122bf39de45
-      size: 4166804
+      md5: 1138c6f4d3c15bf80447169227492e32
+      size: 4164563
   predict_model:
     cmd: python ./src/models/predict_model.py /data/external
     deps:

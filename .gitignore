@@ -90,3 +90,4 @@ target/
 
 
 # DAGSHUB_PAT = d99c9da88fe635eb0297d593a60bc91b40b73dec
+docker run -p 8000:8000 -e DAGSHUB_PAT=d99c9da88fe635eb0297d593a60bc91b40b73dec yt-comments-sentiment-analysis:latest

@@ -1,4 +1,0 @@
-[core]
-    remote = yt-dvc
-['remote "yt-dvc"']
-    url = s3://dvc-yt-comment-analyzer-bucket

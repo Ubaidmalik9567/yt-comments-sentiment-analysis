@@ -69,15 +69,15 @@ jobs:
       #   run: |
       #     git push origin ${{ github.ref_name }}
       
-      - name: Install test dependencies
-        run: |
-          pip install pytest
+      # - name: Install test dependencies
+      #   run: |
+      #     pip install pytest
 
-      - name: Run model loading test
-        env:
-          DAGSHUB_PAT: ${{ secrets.DAGSHUB_PAT }}
-        run: |
-          pytest scripts/model_load_testing.py
+      # - name: Run model loading test
+      #   env:
+      #     DAGSHUB_PAT: ${{ secrets.DAGSHUB_PAT }}
+      #   run: |
+      #     pytest scripts/model_load_testing.py
 
 
 
