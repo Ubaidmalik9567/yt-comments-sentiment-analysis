@@ -1,6 +1,6 @@
 # Influencer Insights Chrome Plugin  
 
-**Influencer Insights Chrome Plugin(YouTube Sentiment Analyzer)** is a Chrome extension designed to provide **real-time sentiment analysis** for comments on any open YouTube video. Quickly gauge viewer reactions—positive, negative, or neutral—at a glance. Whether you're a content creator or an avid YouTube user, this tool gives you instant insights into audience sentiment.  
+**Influencer Insights Chrome Plugin (YouTube Sentiment Analyzer)** is a Chrome extension designed to provide **real-time sentiment analysis** for comments on any open YouTube video. Quickly gauge viewer reactions—positive, negative, or neutral—at a glance. Whether you're a content creator or an avid YouTube user, this tool gives you instant insights into audience sentiment.  
 
 ---
 
@@ -39,7 +39,7 @@ We’re excited to announce that **Influencer Insights Chrome Plugin** will soon
 
 ## 🔧 Technologies Used  
 
-- **MLPOS**: Advanced NLP for accurate sentiment detection.  
+- **MLOps**: Implemented with MLOps for seamless deployment and monitoring of models.  
 - **LightGBM**: Fast, scalable machine learning for comment analysis.
 - **Flask**: Backend framework for building the API and app logic.
 - **Docker**: Containerized deployment for seamless integration.
