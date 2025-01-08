@@ -1,57 +1,57 @@
-yt-comments-sentiment-analysis
-==============================
+# Influencer Insights Chrome Plugin  
 
-This Chrome plugin provides real-time sentiment analysis for comments on any open YouTube video, helping you quickly gauge viewer reactions. See the positive, negative, or neutral sentiment at a glance!
+**Influencer Insights Chrome Plugin(YouTube Sentiment Analyzer)** is a Chrome extension designed to provide **real-time sentiment analysis** for comments on any open YouTube video. Quickly gauge viewer reactions—positive, negative, or neutral—at a glance. Whether you're a content creator or an avid YouTube user, this tool gives you instant insights into audience sentiment.  
 
-Project Organization
-------------
+---
 
-    ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
-    ├── README.md          <- The top-level README for developers using this project.
-    ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
-    │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
-    ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
-    │   │
-    │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
-    │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+## 💡 How Does It Work?  
 
+1. Open the YouTube Sentiment Analyzer Chrome extension on any YouTube video.  
+2. The extension instantly fetches real-time comments for the video.  
+3. Analyze sentiment, view summaries, and track trends effortlessly!  
 
---------
+---
 
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+## ✨ Key Features  
+
+- ✅ **Analyze YouTube comments** in real time.  
+- ✅ **Get sentiment insights** (positive, negative, or neutral) for all comments.  
+- ✅ **Summarize viewer reactions** with concise overviews.  
+- ✅ **Track sentiment trends** over time for deeper analysis.  
+- ✅ **Export analyzed data** in various formats (PDF, CSV).  
+- ✅ Developed using state-of-the-art AI tools for fast and accurate analysis.  
+
+---
+
+## 🎥 See YouTube Sentiment Analyzer in Action!  
+
+[Click here to watch the demo video](https://drive.google.com/file/d/10VkhCRmWVSAXZaE_Kp-43CFxIxC0fI8X/view?usp=drive_link)  
+
+> **Note:** The video demonstrates how the extension seamlessly analyzes YouTube comments and visualizes sentiment trends.  
+
+---
+
+## 🚀 What’s Next?  
+
+We’re excited to announce that **Influencer Insights Chrome Plugin** will soon be available on the Chrome Web Store! Make YouTube analytics faster and more efficient—stay tuned for updates.  
+
+---
+
+## 🔧 Technologies Used  
+
+- **MLPOS**: Advanced NLP for accurate sentiment detection.  
+- **LightGBM**: Fast, scalable machine learning for comment analysis.
+- **Flask**: Backend framework for building the API and app logic.
+- **Docker**: Containerized deployment for seamless integration.
+- **AWS**: Real-time data fetching and deployment via AWS CodeDeploy.  
+
+---
+
+## 🛠 Installation (Coming Soon!)  
+
+Once released, you will be able to:  
+1. Install **YouTube Sentiment Analyzer** directly from the Chrome Web Store.  
+2. Pin it to your Chrome extensions for quick access.  
+3. Start analyzing YouTube comments with a single click!  
+
+---
