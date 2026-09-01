@@ -25,7 +25,7 @@
 
 ## 🎥 See YouTube Sentiment Analyzer in Action!  
 
-[Click here to watch the demo video](https://drive.google.com/file/d/10VkhCRmWVSAXZaE_Kp-43CFxIxC0fI8X/view?usp=drive_link)  
+[Click here to watch the demo video](https://drive.google.com/file/d/1UZ7xKwX5VUelgNmnpqsozPrPyxqZyUSl/view?usp=sharing)  
 
 > **Note:** The video demonstrates how the extension seamlessly analyzes YouTube comments and visualizes sentiment trends.  
 
